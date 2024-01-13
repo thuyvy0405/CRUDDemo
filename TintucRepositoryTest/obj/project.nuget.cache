@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3AeSusS+VhjsWw+uddRQ225gdoBc+qf3GZdwhdlBtPB/js2HFs+5Esxl+9jldWebEnF8WhazOCJxAxxUa/+YdQ==",
+  "dgSpecHash": "BlO3ubNS0k6HPBQvqGV5epfXmJhE72/Sm6tZ27HawuCPIWPvSuRb0qa0god1LPObIv9mBlNfGHEKAOo074a3cg==",
   "success": true,
-  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\TintucRepositoryTest\\TintucServiceTest.csproj",
+  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\TintucRepositoryTest\\TintucServiceTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

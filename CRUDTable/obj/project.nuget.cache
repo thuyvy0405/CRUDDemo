@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J4irVxDnpkCwBfABFsy9sAgjHRXa1vvgs3cxnOFRod/iTMadliSSP03KbV2p4Qs0X0IJ6YRYJaSj/Oppe4X0uw==",
+  "dgSpecHash": "mnFK8/HRqmaYr+EZkTY99KOK5HSU/VVdQLDFWXTZQbR0XmvTjqtP4FKnsSam/mMpd0xHMZ6nMFv1c7zKMcrvHw==",
   "success": true,
-  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\CRUDTable\\CRUDTable.csproj",
+  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\CRUDTable\\CRUDTable.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

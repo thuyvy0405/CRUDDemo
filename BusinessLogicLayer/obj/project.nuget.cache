@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "++TyclCHcYgl0jfBiz6jqnhq50OzSN3yzhftxdEHHC0JJ13WQsfF8qFJUOppRCZgvQCcZKD/pQ80b2HOqu3NBg==",
+  "dgSpecHash": "SOS5cOTUHF9CxVQ6GFZH1zJeTWXw9XKwowSK7oCLE47jl3zy8bnSmtqX8fBrTTyu3CHwA0V5qvTeomNDRu15vQ==",
   "success": true,
-  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
+  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\BusinessLogicLayer\\BusinessLogicLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
