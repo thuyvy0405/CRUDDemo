@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\DataAccessLayer\\DataAccessLayer.csproj": {}
+    "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\DataAccessLayer\\DataAccessLayer.csproj": {}
   },
   "projects": {
-    "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\DataAccessLayer\\DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\DataAccessLayer\\DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectPath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\DataAccessLayer\\DataAccessLayer.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\DataAccessLayer\\obj\\",
+        "outputPath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\HKIII\\LTNET\\Devexress\\Components\\Offline Packages",

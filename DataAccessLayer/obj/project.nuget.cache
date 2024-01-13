@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xQylfAh/SjX3OvRBgRfuhZJWGMCkhJrfb/IjsZRpbD3HQaRtoi2sQ+7uWRTL2H2e5m//qjiSxN4JMb8W6Nik4g==",
+  "dgSpecHash": "2mbzSxXf9627s3Vf4RXBUg2xREbsbMUrsukzdWo8jQmz1lBVR+V9awhqJ3VlihSQSKKyAxoeEsMQ3P5l1zRLsQ==",
   "success": true,
-  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\Git\\CRUDDemo\\DataAccessLayer\\DataAccessLayer.csproj",
+  "projectFilePath": "D:\\Báo Cáo Tôt Nghiệp\\BaiTapTEST\\CRUDTable\\DataAccessLayer\\DataAccessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
