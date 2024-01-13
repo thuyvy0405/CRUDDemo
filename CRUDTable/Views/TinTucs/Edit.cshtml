@@ -1,0 +1,170 @@
+﻿@model DataAccessLayer.Entities.TinTuc
+
+@{
+    ViewData["Title"] = "Cập nhật";
+}
+
+<h4 class="text-center text-info">Cập nhật tin tức</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <p class="text-danger">@ViewData["msgtitleExits"]</p>
+            <input type="hidden" asp-for="IdtinTuc" />
+            <div class="form-group">
+                <label asp-for="TieuDe" class="control-label"></label>
+                <input asp-for="TieuDe" class="form-control" />
+                <span asp-validation-for="TieuDe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TomTat" class="control-label"></label>
+                <textarea asp-for="TomTat" class="form-control">
+                </textarea>           
+                <span asp-validation-for="TomTat" class="text-danger"></span>
+            </div>
+            <input asp-for="NgayTao" value="@Model.NgayTao" type="hidden" />
+            <input asp-for="NgayUpdate" value="@Model.NgayUpdate" type="hidden" />
+            <input asp-for="HinhAnh" value="@Model.HinhAnh" id="oldImage" type="hidden" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="HinhAnh" class="control-label">Chọn file</label>
+                        <input type="file" name="fileanh" class="form-control" id="fileInput" onchange="displayImage()" />
+                        <span asp-validation-for="HinhAnh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <a class="btn btn-outline-danger" onclick="cancelImageSelection()">Hủy chọn ảnh</a>
+                    </div>
+                    @if (@Model.HinhAnh != null)
+                    {
+                        <div class="form-group mt-2">
+                            <a class="btn btn-outline-info" onclick="onDeleteOldImage('@Model.HinhAnh','@Model.IdtinTuc')" id="btn-remove-oldimage">Xóa ảnh cũ</a>
+                        </div>
+                    }
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-groub m-2">
+                        <label asp-for="HinhAnh" class="control-label">Hình ảnh:</label>
+                        <img id="selectedImage" style="max-width: 300px; max-height: 300px;" src="~/images/tintuc/@Model.HinhAnh" />
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function onDeleteOldImage(oldImagename, id) {
+                    var btnRemove = document.getElementById('btn-remove-oldimage');
+                    // Gửi yêu cầu Ajax để xóa ảnh
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/tintucs/RemoveOldImage'); // Thay thế '/your-delete-endpoint' bằng đường dẫn thực tế của bạn
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            console.log('Xóa ảnh thành công!');
+                            // Xóa thành công, cập nhật giao diện người dùng nếu cần
+                            fileInput.value = ''; // Đặt giá trị của input type=file về null để hủy chọn file
+                            selectedImage.src = ''; // Xóa hình ảnh đang hiển thị
+                            btnRemove.remove();
+                        }
+                    };
+                    // Gửi yêu cầu với tên ảnh cũ
+                    xhr.send(JSON.stringify({
+                        imageName: oldImagename,
+                        id: id
+                    }));
+                }
+
+            </script>
+
+            <script>
+                var selectedImage = document.getElementById('selectedImage');
+                var fileInput = document.getElementById('fileInput');
+                var oldImage = document.getElementById('oldImage');
+                function displayImage() {
+                    if (fileInput.files && fileInput.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            selectedImage.src = e.target.result;
+                        }
+
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
+                    else{
+                        selectedImage.src = '@Url.Content("~/images/tintuc/" + Model.HinhAnh)';
+                    }
+                }
+                //xóa ảnh và giá trị của input file
+                function cancelImageSelection() {
+                    if (selectedImage.src === ''){
+                        return;
+                    }
+                    fileInput.value = ''; // Đặt giá trị của input type=file về null để hủy chọn file
+                    selectedImage.src = '@Url.Content("~/images/tintuc/" + Model.HinhAnh)';
+                }
+            </script>
+
+            <div class="form-group">
+                <label asp-for="LuotXem" class="control-label"></label>
+                <input asp-for="LuotXem" class="form-control" />
+                <span asp-validation-for="LuotXem" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TrangThai" /> @Html.DisplayNameFor(model => model.TrangThai)
+                </label>
+            </div>
+            <p class="text-danger">@ViewData["msg"]</p>
+
+            <div class="form-group">
+                <label class="control-label">Chọn danh mục</label>
+                <select class="form-select text-dark" style="height:250px;" multiple aria-label="Danh mục tin tức" id="IDDanhMuc" name="IDDanhMuc">
+                    @foreach (var item in ViewBag.Danhmuc)
+                    {
+                        var isSelected = false;
+
+                        @foreach (var exitsDm in Model.DanhMucTinTucs)
+                        {
+                            if (item.IddanhMuc == exitsDm.IddanhMuc)
+                            {
+                                isSelected = true;
+                                <option selected value="@item.IddanhMuc">@item.TenDanhMuc</option>
+                                break; // Break out of the inner loop once a match is found
+                            }
+                        }
+
+                        if (!isSelected)
+                        {
+                            <option value="@item.IddanhMuc">@item.TenDanhMuc</option>
+                        }
+                    }
+
+                </select>
+            </div>
+            <p class="text-info">Có thể chọn 1 hoặc nhiều danh mục</p>
+            <div class="form-group">
+                <label asp-for="NoiDung" class="control-label"></label>
+                <textarea asp-for="NoiDung" class="form-control" id="motaEditor"></textarea>
+                <script>
+                    CKEDITOR.replace("motaEditor");
+                </script>
+                <span asp-validation-for="NoiDung" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input asp-for="DanhMucTinTucs" class="form-control"  value="@Model.DanhMucTinTucs" type="hidden"/>
+
+                <input type="submit" value="Lưu" class="btn btn-outline-info" />
+                <a asp-action="Index" class="btn btn-outline-primary">Quay lại danh sách</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

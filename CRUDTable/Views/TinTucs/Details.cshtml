@@ -1,0 +1,104 @@
+﻿@model DataAccessLayer.Entities.TinTuc
+
+@{
+    ViewData["Title"] = "Xem chi tiêt";
+}
+
+<div>
+    <h4 class="text-info">Chi tiết tin tức</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TieuDe)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TomTat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TomTat)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.NoiDung)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+        <dd class = "col-sm-10">
+            @if(Model.HinhAnh != null)
+            {
+                <img src="~/images/tintuc/@Model.HinhAnh" style="height:300px; width:300px;" />
+            }
+            else
+            {
+                <p>Chưa có ảnh</p>
+            }
+            
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NgayTao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NgayTao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NgayUpdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NgayUpdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LuotXem)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LuotXem)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DanhMucTinTucs)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã Danh Mục</th>
+                        <th>Tên Danh Mục</th>
+                        <!-- Add more headers as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.DanhMucTinTucs)
+                    {
+                        <tr>
+                            <td>@item.DanhMuc.IddanhMuc</td>
+                            <td>@item.DanhMuc.TenDanhMuc</td>
+                            <!-- Add more cells as needed -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@Model?.IdtinTuc">Cập nhật</a> 
+    <a asp-action="Index" class="btn btn-outline-primary">Quay lại danh sách</a>
+</div>

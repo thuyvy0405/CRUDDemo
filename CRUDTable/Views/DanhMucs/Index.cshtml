@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DataAccessLayer.Entities.DanhMuc>
+
+@{
+    ViewData["Title"] = "Danh sách";
+}
+
+<h4 class="text-info">Danh Sách Danh Mục</h4>
+
+<div class="row">
+    <div class="col-4">
+        <p>
+            <a asp-action="Create" class="btn btn-outline-success">Thêm mới</a>
+        </p>
+    </div>
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+        <form asp-action="Index">
+            <input name="keyword" placeholder="Nhập tên, nội dung..." />
+            <button type="submit" class="btn btn-outline-success"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenDanhMuc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDanhMuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThai)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.IddanhMuc" class="btn btn-info m-1"><i class="bi bi-pencil-square"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.IddanhMuc" class="btn btn-secondary m-1"><i class="bi bi-eye-fill"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.IddanhMuc" class="btn btn-danger m-1"><i class="bi bi-trash3"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

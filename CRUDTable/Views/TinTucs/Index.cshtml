@@ -1,0 +1,164 @@
+﻿@model IEnumerable<DataAccessLayer.Entities.TinTuc>
+
+@{
+    ViewData["Title"] = "Danh sách";
+}
+
+<h4 class="text-info">Danh Sách Tin Tức</h4>
+<div class="row">
+    <form>
+        <div class="col-md-8 mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="startDate">Từ ngày</label>
+                        <input type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="startDate" name="startDate">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="endDate">Đến ngày</label>
+                        <input type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="endDate" name="endDate">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="endDate">Trạng thái</label>
+                    <select name="isApproved" class="form-control">
+                        <option selected >Tất cả</option>
+                        <option value="true">Đã duyệt</option>
+                        <option value="false">Chưa duyệt</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2 mt-4">
+                        <button class="btn btn-primary btn-block" id="filterButton" type="submit" ><i class="bi bi-funnel"></i></button>
+                    </div>
+                </div>
+        </div>
+    
+        <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="keyword" placeholder="Nhập tên, nội dung...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a asp-action="Index" asp-controller="tintucs" class="btn btn-outline-success mt-2"><i class="bi bi-card-list"></i> Xem tất cả</a>
+
+                </div>
+                <div class="col-md-6">
+                    <a asp-action="Create" class="btn btn-outline-success mt-2"><i class="bi bi-plus"></i> Thêm mới</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+   
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            responsive:true,
+            paging: false
+        });
+    });
+</script>
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TieuDe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TomTat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HinhAnh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuotXem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TomTat)
+            </td>
+            <td>
+                    @if (@item.HinhAnh != null)
+                    {
+                        <img src="~/images/tintuc/@item.HinhAnh" style="width:100px; height:100px;" />
+                    }
+                    else
+                    {
+                        <p class="text-danger">Chưa có ảnh</p>
+                    }
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuotXem)
+            </td>
+            <td>
+                    @if (item.TrangThai == true)
+                    {
+                        <a class="btn btn-success" onclick="UpdateStatus('@item.IdtinTuc')" id="btn-status-@item.IdtinTuc"><strong id="icon-status-@item.IdtinTuc"> <i class="bi bi-check-circle-fill"></i></strong></a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger" onclick="UpdateStatus('@item.IdtinTuc')" id="btn-status-@item.IdtinTuc"><strong id="icon-status-@item.IdtinTuc"> <i class="bi bi-x-circle"></i></strong></a>
+                    }
+                    <script>
+                      
+                        function UpdateStatus(id) {
+                            var btnstatus = document.getElementById(`btn-status-${id}`);
+                            var iconstatus = document.getElementById(`icon-status-${id}`);
+
+                            // Gửi yêu cầu cập nhật lại trạng thái
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', '/tintucs/UpdateStatus'); // URL
+                            xhr.setRequestHeader('Content-Type', 'application/json');
+                            xhr.onreadystatechange = function () {
+                                if (xhr.readyState === 4 && xhr.status === 200) {
+                                    if (btnstatus.className !== 'btn btn-danger') {
+                                        // Cập nhật icon và màu sau khi thành công
+                                        btnstatus.innerHTML = '<strong id="icon-status"><i class="bi bi-x-circle"></i></strong>'; // Đổi icon
+                                        btnstatus.style.color = 'white'; // Đôi màu
+                                        btnstatus.className = 'btn btn-danger'// đổi style button
+                                    }
+                                    else{
+                                        // Cập nhật icon và màu sau khi thành công
+                                        btnstatus.innerHTML = '<strong id="icon-status"><i class="bi bi-check-circle-fill"></i></strong>'; // Đổi icon
+                                        btnstatus.style.color = 'white'; // Đôi màu
+                                        btnstatus.className = 'btn btn-success'// đổi style button
+                                    }
+                                    console.log('Cập nhật thành công!');
+                                    toastr.success('Cập nhật trạng thái thành công.');
+                                }
+                            };
+                            // Gửi yêu cầu vói Id
+                            xhr.send(JSON.stringify({
+                                Id: id
+                            }));
+                        }
+                    </script>
+
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdtinTuc" class="btn btn-info m-1"><i class="bi bi-pencil-square"></i></a> 
+                    <a asp-action="Details" asp-route-id="@item.IdtinTuc" class="btn btn-secondary m-1"><i class="bi bi-eye-fill"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.IdtinTuc" class="btn btn-danger m-1"><i class="bi bi-trash3"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+            

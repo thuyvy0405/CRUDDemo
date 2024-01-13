@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model CRUDTable.Models.UserRoleModel
+
+@{
+    ViewData["Title"] = "Cập nhật";
+}
+
+<h4 class="text-info">Cập nhật tài khoản</h4>
+
+<form asp-action="Edit" method="post">
+    <input asp-for="Id"  type="hidden"/>
+    <p class="text-danger">@ViewData["msg"]</p>
+    <div>
+        <label asp-for="UserName">Username:</label>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div>
+        <label>Mật khẩu cũ:</label>
+        <input id="pass" asp-for="OldPassWord" class="form-control" type="password" />
+    </div>
+    <div>
+        <label>Mật khẩu mới:</label>
+        <input id="newpass" asp-for="NewPassWork" class="form-control" type="password" />
+    </div>
+    <div>
+        <label for="roleName">Chọn quyền:</label>
+        <select name="roleName" class="form-control">
+            @foreach (var item in ViewBag.Quyen )
+            {
+                bool ismacth = false;
+                foreach(var quyen in Model.RoleName)
+                {
+                    if (quyen == item.Name)
+                    {
+                        <option selected value="@quyen">@quyen</option>
+                        ismacth = true;
+                        break;
+                    }
+                }
+                if (!ismacth)
+                {
+                    <option  value="@item.Name">@item.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Lưu" class="btn btn-outline-info" id="submitButton" />
+        <a asp-action="Index" class="btn btn-outline-primary">Quay lại danh sách</a>
+    </div>
+</form>
+

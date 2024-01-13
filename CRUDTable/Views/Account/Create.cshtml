@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Thêm mới";
+}
+
+<h2 class="text-info">Thêm mới tài khoản</h2>
+
+<form asp-action="Create" method="post">
+
+    <p class="text-danger">@ViewData["msg"]</p>
+
+    <div>
+        <label asp-for="UserName">Username:</label>
+        <input asp-for="UserName"  class="form-control"/>
+    </div>
+    <div>
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div>
+        <label>Mật khẩu:</label>
+        <input id="pass" name="pass" class="form-control" type="password" />
+    </div>
+
+    <!-- Add other user properties you want to include in the form -->
+    <div>
+        <label for="roleName">Chọn quyền:</label>
+        <select name="roleName" class="form-control">
+            @foreach(var item in ViewBag.Quyen)
+            {
+                <option value="@item.Name">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Thêm mới" class="btn btn-primary" id="submitButton1" />
+        <a asp-action="Index" class="btn btn-outline-primary">Quay lại danh sách</a>
+    </div>
+</form>

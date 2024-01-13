@@ -1,0 +1,29 @@
+﻿@model DataAccessLayer.Entities.DanhMuc
+
+@{
+    ViewData["Title"] = "Xem chi tiết";
+}
+
+
+<div>
+    <h4 class="text-info">Chi tiết danh mục</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenDanhMuc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenDanhMuc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@Model?.IddanhMuc">Cập nhật</a>
+    <a asp-action="Index" class="btn btn-outline-primary">Quay lại danh sách</a>
+</div>

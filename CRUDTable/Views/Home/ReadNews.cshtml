@@ -1,0 +1,9 @@
+﻿@model DataAccessLayer.Entities.TinTuc
+@{
+    ViewData["Titel"] = "Đọc báo - " + Model.TieuDe;
+}
+
+<h1>@Model.TieuDe</h1>
+<p>@Html.Raw(@Model.NoiDung)</p>
+<img src="~/images/tintuc/02dbbbf6-2c6b-4b6f-bf9f-53bbe287272b_bongda.jpg" />
+<!-- Hiển thị các thông tin khác của TinTuc -->
